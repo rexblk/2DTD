@@ -19,9 +19,16 @@ public class playerMovement : MonoBehaviour
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
+        if(movement.sqrMagnitude > 0){
+            animator.SetFloat("LastHorizontal", movement.x);
+            animator.SetFloat("LastVertical", movement.y);
+        }
+
     }
 
     void FixedUpdate(){
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
+
+    
 }
